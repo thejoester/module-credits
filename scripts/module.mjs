@@ -277,7 +277,7 @@ export class MMP {
 				if (!MODULE.setting('trackedChangelogs')[key].hasSeen) result[key] = MODULE.setting('trackedChangelogs')[key];
 				return result;
 			}, {});
-			if (Object.keys(unSeenChangelogs).length >= 1) new PreviewDialog(unSeenChangelogs).render(true);
+			if (Object.keys(unSeenChangelogs).length >= 1) new PreviewDialog(unSeenChangelogs).render({ focus: true });
 		}
 	}
 
@@ -366,7 +366,7 @@ export class MMP {
 				<i class="fa-solid fa-list-check"></i>
 			</button>`);
 			elem.querySelector('nav.list-filters button[data-action="presets"]').addEventListener('click', (event) => {
-				new PresetDialog().render(true);
+				new PresetDialog().render({ focus: true });
 			});
 
 			// Add Export Button
@@ -374,7 +374,7 @@ export class MMP {
 				<i class="fa-solid fa-download"></i>
 			</button>`);
 			elem.querySelector('nav.list-filters button[data-action="export"]').addEventListener('click', (event) => {
-				new ExportDialog(elem.querySelectorAll('#module-list li.package')).render(true);
+				new ExportDialog(elem.querySelectorAll('#module-list li.package')).render({ focus: true });
 			})
 
 			// Add Import Button
@@ -422,7 +422,7 @@ export class MMP {
 							}
 
 							// Show Import Dialog
-							new ImportDialog(moduleData, importType).render(true);
+							new ImportDialog(moduleData, importType).render({ focus: true });
 						} catch (error) {
 							MODULE.error('Failed to read selected file', error);
 							ui.notifications.error(`<strong>${MODULE.TITLE}</strong> Failed to read selected file.`);
@@ -430,7 +430,7 @@ export class MMP {
 						}
 					})
 				}).trigger('click');
-				//new ImportDialog({}).render(true);
+				//new ImportDialog({}).render({ focus: true });
 			});
 
 			// Convert Filters To Dropdown
@@ -585,7 +585,7 @@ export class MMP {
 								MODULE.setting('renamedModules', foundry.utils.mergeObject(MODULE.setting('renamedModules'), {
 									[packageElem[0].closest('li.package').dataset.moduleId]: elemDialog[0].querySelector(`input[name="${MODULE.ID}-rename-module-title"]`).value
 								}, { inplace: false })).then(response => {
-									new ModuleManagement().render(true);
+									new ModuleManagement().render({ focus: true });
 								});
 							}
 						},
@@ -603,7 +603,7 @@ export class MMP {
 					let renamedModules = MODULE.setting('renamedModules');
 					delete renamedModules[moduleKey];
 					MODULE.setting('renamedModules', renamedModules).then(response => {
-						new ModuleManagement().render(true);
+						new ModuleManagement().render({ focus: true });
 					})
 				})
 			}, {
@@ -836,7 +836,7 @@ export class MMP {
 							version: moduleData.version ?? '0.0.0',
 							type: 'README'
 						}
-					}).render(true);
+					}).render({ focus: true });
 				})
 			}
 			// Add Changelog Tag
@@ -852,7 +852,7 @@ export class MMP {
 							version: moduleData.version ?? '0.0.0',
 							type: 'CHANGELOG'
 						}
-					}).render(true);
+					}).render({ focus: true });
 				})
 			}
 			// Add Attributions Tag
@@ -868,7 +868,7 @@ export class MMP {
 							version: moduleData.version ?? '0.0.0',
 							type: 'ATTRIBUTIONS'
 						}
-					}).render(true);
+					}).render({ focus: true });
 				})
 			}
 			// Add Website Tag
@@ -1068,7 +1068,7 @@ export class MMP {
 			tippy.hideAll();
 		});
 
-		//new ModuleManagement().render(true);
+		//new ModuleManagement().render({ focus: true });
 		app.setPosition();
 	}
 
@@ -1264,7 +1264,7 @@ export class MMP {
 
 				elem[0].querySelector('#settings-documentation button[data-action="changelogs"]').addEventListener('click', async (event) => {
 					let changelogs = await (!game.user.isGM ?  MMP.socket.executeAsGM('getGMSetting', {moduleId: MODULE.ID, settingName: 'trackedChangelogs'}) : MODULE.setting('trackedChangelogs'));
-					new PreviewDialog(changelogs).render(true);
+					new PreviewDialog(changelogs).render({ focus: true });
 				})
 			}
 
@@ -1307,7 +1307,7 @@ export class MMP {
 								type: 'README',
 								isSystem: true
 							}
-						}).render(true);
+						}).render({ focus: true });
 					});
 				}
 
@@ -1325,7 +1325,7 @@ export class MMP {
 								type: 'CHANGELOG',
 								isSystem: true
 							}
-						}).render(true);
+						}).render({ focus: true });
 					});
 				}
 
@@ -1343,7 +1343,7 @@ export class MMP {
 								type: 'ATTRIBUTIONS',
 								isSystem: true
 							}
-						}).render(true);
+						}).render({ focus: true });
 					});
 				}
 			}
