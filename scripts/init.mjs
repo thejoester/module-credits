@@ -145,7 +145,11 @@ Hooks.once('ready', async () => {
 	}
 
 	if (game.modules.get('lib-wrapper')?.active ?? false) {
-		libWrapper.register(MODULE.ID, "ModuleManagement.prototype._onChangeCheckbox", expandedModuleDependencies, "OVERRIDE");
+		if (!game.version.startsWith("13")) {
+			libWrapper.register(MODULE.ID, "ModuleManagement.prototype._onChangeCheckbox", expandedModuleDependencies, "OVERRIDE");
+		} else {
+			console.warn("Skipping _onChangeCheckbox libWrapper patch in Foundry V13.");
+		}
 	}else{
 		ModuleManagement.prototype._onChangeCheckbox = expandedModuleDependencies;
 	}
