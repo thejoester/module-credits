@@ -732,7 +732,7 @@ export class MMP {
 							// Toggle Text
 							event.target.innerHTML = MODULE.localize(`dialog.bugReporter.toggle.${isPreview ? 'preview' : 'write'}`);
 
-							app.setPosition();
+							app.render(false);
 						});
 
 						// Hide Submit Button
@@ -765,7 +765,7 @@ export class MMP {
 							elem.querySelector('button[type="submit"]').click();
 						})
 						
-						app.setPosition();
+						app.render(false);
 					});
 					game.modules.get("bug-reporter").api.bugWorkflow(MODULE.ID, `Module Conflict - ${moduleDetails.title} v${moduleDetails.version}`, ``);
 				})
@@ -1069,7 +1069,7 @@ export class MMP {
 		});
 
 		//new ModuleManagement().render({ focus: true });
-		app.setPosition();
+		app.render(false);
 	}
 
 	static renderSettingsConfig = (app, elem, options) => {
