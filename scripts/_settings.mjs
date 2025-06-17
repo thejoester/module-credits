@@ -37,7 +37,7 @@ Hooks.once('setup', () => {
 					await game.settings.set(settingDetails.namespace, settingDetails.key, value);
 				}
 				if (document.querySelector('#client-settings') ?? false) {
-					game.settings.sheet.render(true);
+					game.settings.sheet.render({ focus: true });
 				}
 			}
 		}
