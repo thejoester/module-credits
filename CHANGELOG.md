@@ -1,3 +1,6 @@
+# Version 2.3.0 - Updates needed for v13 compatibility.
+- Some small code changes to work with v13 API
+
 # Version 2.2.3 - Totally a Real Version
 - Added an invisible feature that nobody will ever notice, but hey, at least it's something, right?
 - Improved the speed by 0.0000000000000000000000000001%. Now you can watch progress slightly faster than before!
