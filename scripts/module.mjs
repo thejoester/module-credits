@@ -359,7 +359,8 @@ export class MMP {
 
 		// Focus on Filter
 		elem.querySelector('nav.list-filters input[type="search"]').focus();
-
+		if (input) input.focus();
+		
 		if (game.user.isGM) {
 			// Add Presets Button
 			elem.querySelector('nav.list-filters').insertAdjacentHTML('afterbegin', `<button type="button" class="" data-action="presets" data-tooltip="${MODULE.localize('dialog.moduleManagement.tooltips.managePresets')}">
